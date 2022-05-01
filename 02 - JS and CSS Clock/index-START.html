@@ -79,9 +79,14 @@
         const hours = now.getHours();
 
         // set hand angles
-        const secondsDegrees = (seconds / 60) * 360 + 90;
+        let secondsDegrees = (seconds / 60) * 360 + 90;
         const minutesDegrees = (minutes / 60) * 360 + 90;
         const hoursDegrees = (hours / 60) * 360 + 90;
+
+        // set second angle to 360 if 0
+        if (secondsDegrees === 90) {
+          secondsDegrees = 360 + 90;
+        }
 
         //apply hand angles
         secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
@@ -89,6 +94,7 @@
         hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
 
         console.log(seconds);
+        console.log(secondsDegrees);
       }
 
       setInterval(setDate, 1000);
